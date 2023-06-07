@@ -6,13 +6,13 @@ from transformers import AutoModel, AutoTokenizer
 
 app = Flask(__name__)
 
-label_encoder = joblib.load("label_encoder.joblib")
-lr_model = joblib.load("logistic_regression_model.pkl")
+label_encoder = joblib.load("./models/label_encoder.joblib")
+lr_model = joblib.load("./models/logistic_regression_model.pkl")
 
-pret_tokenizer = AutoTokenizer.from_pretrained(
-    "kz-transformers/kaz-roberta-conversational"
-)
-pret_model = AutoModel.from_pretrained("kz-transformers/kaz-roberta-conversational")
+MODEL_NAME = "kz-transformers/kaz-roberta-conversational"
+
+pret_tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)
+pret_model = AutoModel.from_pretrained(MODEL_NAME)
 
 
 def make_prediction(text: str) -> tuple:
